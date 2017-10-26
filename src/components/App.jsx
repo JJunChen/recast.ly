@@ -2,14 +2,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: [],
+      videos: exampleVideoData,
       currentVideo: exampleVideoData[0] 
     };
-    //searchYouTube('puppies', this.setVideoListState.bind(this));
+    
   }
   
   componentDidMount() {
-    this.props.searchYouTube('puppies', this.setVideoListState.bind(this));
+    this.props.searchYouTube('', this.setVideoListState.bind(this));
   }
   
   selectVideo(video) {
@@ -18,19 +18,22 @@ class App extends React.Component {
   
   setVideoListState(videosResult) {
     this.setState({
-      currentVideo: videosResult[1],
+      currentVideo: videosResult[0],
       videos: videosResult
-    }, () => {
-      console.log(this.state.videos);
     });
   }
+
+  searchVideos(query) {
+    this.props.searchYouTube(query, this.setVideoListState.bind(this));
+  }
+  
   
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search/>
+            <Search searchVideos={this.searchVideos.bind(this)}/>
           </div>
         </nav>
         <div className="row">

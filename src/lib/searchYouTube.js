@@ -1,4 +1,4 @@
-var searchYouTube = (options, callback) => {
+var searchYouTube = (query, callback) => {
   // TODO
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
@@ -7,11 +7,11 @@ var searchYouTube = (options, callback) => {
     data: {
       key: 'AIzaSyAxqRfmlsNEgTTfymTt8pgi90ZjghZQ4sI',
       maxResults: 5,
-      q: 'puppies',
+      q: query,
+      chart: 'mostPopular',
       part: 'snippet'
     }
   }).done((response) => {  // ----> you missed this part
-    debugger;
     callback(response.items);
   });
 

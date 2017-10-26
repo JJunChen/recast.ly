@@ -1,22 +1,22 @@
-var VideoListEntry = (props) => ({
-  onVideoClick () {
+const VideoListEntry = (props) => {
+  
+  const onVideoClick = () => {
     props.onClickHandler(props.video);
-  },
-  render() {
-    return (
-      <div className="video-list-entry media">
-        <div className="media-left media-middle">
-          <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
-        </div>
-        <div className="media-body">
-          <div onClick={this.onVideoClick} className="video-list-entry-title">{props.video.snippet.title}</div>
-          <div className="video-list-entry-detail">{props.video.snippet.description}</div>
-        </div>
+  };
+
+  return (
+    <div className="video-list-entry media">
+      <div className="media-left media-middle">
+        <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
       </div>
-    );
-  }
+      <div className="media-body">
+        <div onClick={onVideoClick} className="video-list-entry-title">{props.video.snippet.title}</div>
+        <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+      </div>
+    </div>
+  );
   //props.onClickHandler(video)
-});
+};
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
