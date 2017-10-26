@@ -2,8 +2,27 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: true
+      videos: [],
+      currentVideo: exampleVideoData[0] 
     };
+    //searchYouTube('puppies', this.setVideoListState.bind(this));
+  }
+  
+  componentDidMount() {
+    this.props.searchYouTube('puppies', this.setVideoListState.bind(this));
+  }
+  
+  selectVideo(video) {
+    this.setState({currentVideo: video});  
+  }
+  
+  setVideoListState(videosResult) {
+    this.setState({
+      currentVideo: videosResult[1],
+      videos: videosResult
+    }, () => {
+      console.log(this.state.videos);
+    });
   }
   
   render() {
@@ -16,10 +35,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.props.videos[0]}/>
+            <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.props.videos}/>
+            <VideoList videos={this.state.videos} onClickHandler={this.selectVideo.bind(this)}/>
           </div>
         </div>
       </div>

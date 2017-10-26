@@ -1,7 +1,7 @@
 var VideoList = (props) => ({
   render() {
     const rows = [];
-    this.props.videos.forEach((video) => rows.push(<VideoListEntry video={video}/>));
+    this.props.videos.forEach((video, idx) => rows.push(<VideoListEntry video={video} key={idx} onClickHandler={props.onClickHandler}/>));
     return (
       <div className="video-list">
         {rows}
