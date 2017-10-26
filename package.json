@@ -6,10 +6,10 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "start": "babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
-    "start": "live-server",
     "test": "live-server --open=./SpecRunner.html --port=8081",
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash"
+    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "build": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
+    "build:watch": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.2",
@@ -25,6 +25,7 @@
     "babel-watch": "^2.0.7",
     "chai": "^3.5.0",
     "mocha": "2.3.3",
-    "sinon": "1.17.3"
+    "sinon": "1.17.3",
+    "webpack": "^3.8.1"
   }
 }

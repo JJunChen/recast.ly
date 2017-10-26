@@ -9,11 +9,13 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    this.props.searchYouTube('', this.setVideoListState.bind(this));
+    this.searchVideos();
   }
   
   selectVideo(video) {
-    this.setState({currentVideo: video});  
+    this.setState({
+      currentVideo: video
+    });  
   }
   
   setVideoListState(videosResult) {
@@ -24,9 +26,14 @@ class App extends React.Component {
   }
 
   searchVideos(query) {
-    this.props.searchYouTube(query, this.setVideoListState.bind(this));
+    let options = {
+      key: this.props.API_KEY,
+      query: query,
+      max: 5
+    };
+    
+    this.props.searchYouTube(options, this.setVideoListState.bind(this));
   }
-  
   
   render() {
     return (
